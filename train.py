@@ -106,6 +106,8 @@ def extend_cfg(cfg):
 
     cfg.DATASET.SUBSAMPLE_CLASSES = "all"  # all, base or new
 
+    cfg.TRAINER.GRAPHADAPTER.BETA = 0.1  # beta parameter for GraphAdapter
+
 
 def setup_cfg(args):
     cfg = get_cfg_default()
