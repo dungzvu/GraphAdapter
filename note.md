@@ -34,6 +34,6 @@ https://github.com/KaiyangZhou/CoOp/blob/main/DATASETS.md
 
 ## Train
 
-```
-
+```shell
+python train.py --root ./data --output-dir output --trainer GraphCLIP_v1 --dataset-config-file ./configs/datasets/imagenetv2.yaml --config-file ./configs/trainers/GraphCLIP_v1/rn50_ep200.yaml
 ```
