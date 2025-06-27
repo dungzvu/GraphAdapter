@@ -31,7 +31,9 @@ pip install pickle5
 
 https://github.com/KaiyangZhou/CoOp/blob/main/DATASETS.md
 
-
+- ImagenetV2
+    - Download file and uncompress to ./data/imagenetv2: https://huggingface.co/datasets/vaishaal/ImageNetV2/blob/main/imagenetv2-matched-frequency.tar.gz
+    - Download file to ./data/: https://drive.google.com/file/d/1-61f_ol79pViBFDG_IDlUQSwoLcn2XXF/view
 ## Train
 
 ```shell
