@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+import os.path as osp
 
 from dassl.engine import TRAINER_REGISTRY, TrainerX
 from dassl.optim import build_optimizer, build_lr_scheduler
@@ -282,14 +283,26 @@ def _get_base_image_features(cfg, classnames, clip_model, img_encoder, train_loa
                 labels.append(label)
         img_feature_list = torch.cat(img_feature, dim=0)
         label_list = torch.cat(labels, dim=0)
-        sorted, indices = torch.sort(label_list)
-        # print("+++++++++++++++++++len_label", len(sorted), sorted[-1])
-        label_len = len(sorted)//(sorted[-1]+1)
-        # print('=====label_len', label_len)
+        sorted_labels, indices = torch.sort(label_list)
+        
+        # Get the sorted features
         img_feature_list_all = torch.index_select(img_feature_list, 0, indices)
+        
+        # Calculate number of classes and samples per class
+        num_classes = int(sorted_labels[-1].item()) + 1
+        total_samples = len(sorted_labels)
+        samples_per_class = total_samples // num_classes
+        
+        # Ensure we have the right number of samples for reshaping
+        valid_samples = num_classes * samples_per_class
+        if valid_samples != total_samples:
+            # Truncate to make it divisible
+            sorted_labels = sorted_labels[:valid_samples]
+            img_feature_list_all = img_feature_list_all[:valid_samples]
+        
+        # Reshape and average features for each class
         b, c = img_feature_list_all.size()
-        label_list = sorted.view(b//label_len, label_len)
-        img_feature_list_all = img_feature_list_all.view(b//label_len, label_len, -1).mean(dim=1)
+        img_feature_list_all = img_feature_list_all.view(num_classes, samples_per_class, -1).mean(dim=1)
         img_encoder = img_encoder.to(device)
 
     return img_feature_list_all.to(device)
