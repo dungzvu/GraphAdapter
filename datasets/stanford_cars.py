@@ -1,5 +1,5 @@
 import os
-import pickle5 as pickle
+import pickle
 from scipy.io import loadmat
 
 from dassl.data.datasets import DATASET_REGISTRY, Datum, DatasetBase

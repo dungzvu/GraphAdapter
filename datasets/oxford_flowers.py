@@ -1,5 +1,5 @@
 import os
-import pickle5 as pickle
+import pickle
 import random
 from scipy.io import loadmat
 from collections import defaultdict

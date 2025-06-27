@@ -1,5 +1,5 @@
 import os
-import pickle5 as pickle
+import pickle
 
 from dassl.data.datasets import DATASET_REGISTRY, Datum, DatasetBase
 from dassl.utils import mkdir_if_missing
