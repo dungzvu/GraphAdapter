@@ -26,7 +26,7 @@ import datasets.imagenet_r
 import trainers.coop
 import trainers.cocoop
 import trainers.zsclip
-import trainers.baseclip_graph
+# import trainers.baseclip_graph
 import trainers.baseclip_graph_v1
 
 

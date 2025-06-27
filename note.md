@@ -27,6 +27,11 @@ python setup.py develop
 pip install pickle5
 ```
 
+## Download datasets
+
+https://github.com/KaiyangZhou/CoOp/blob/main/DATASETS.md
+
+
 ## Train
 
 ```
