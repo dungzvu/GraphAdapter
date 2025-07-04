@@ -120,7 +120,8 @@ class GraphConvolution(nn.Module):
         self.sparse_inputs = sparse_inputs
         self.hidden_dim = hidden_dim
         self.bias = bias
-        self.hidden_dim = 512
+        # TODO: why hard-coded 512?
+        # self.hidden_dim = 512
         self.class_num = class_num
         self.gcn_weights = nn.Parameter(torch.ones(self.hidden_dim, self.hidden_dim))
         if self.bias:
