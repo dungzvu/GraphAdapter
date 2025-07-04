@@ -193,7 +193,7 @@ class GraphLearner(nn.Module):
         self.beta_it = cfg.TRAINER.GRAPHADAPTER.BETA
         self.node_num = 1
         # self.alpha_it = 
-        self.hidden_dim = 1
+        self.hidden_dim = 1024
         self.GCN_tt = GraphConvolution(self.hidden_dim, name='metagraph', device=self.device, class_num=base_text_features.size()[0])
         self.GCN_it = GraphConvolution(self.hidden_dim, name='metagraph', device=self.device, class_num=base_text_features.size()[0])
 
